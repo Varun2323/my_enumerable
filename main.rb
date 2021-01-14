@@ -27,12 +27,20 @@ module Enumerable
   end
 
   # 3--Defining my_select
-  def my_select
+   def my_select
     return to_enum(:my_select) unless block_given?
 
-    new_arr = []
-    to_a.each { |x| new_arr << x if yield x }
-    new_arr
+    if is_a?(Array)
+      result = []
+      my_each { |value| result.push(value) if yield(value) }
+    elsif is_a?(Range)
+      result = []
+      my_each { |value| result.push(value) if yield(value) }
+    else
+      result = {}
+      my_each { |key, value| result[key] = value if yield(key, value) }
+    end
+    result
   end
 
   # 4-- Defining my_all?
