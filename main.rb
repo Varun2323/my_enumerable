@@ -1,5 +1,6 @@
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
+# rubocop:disable Metrics/ModuleLength
 
 module Enumerable
   # 1-- Defining my_each method
@@ -27,7 +28,7 @@ module Enumerable
   end
 
   # 3--Defining my_select
-   def my_select
+  def my_select
     return to_enum(:my_select) unless block_given?
 
     if is_a?(Array)
@@ -134,3 +135,4 @@ def multiply_els(elements)
 end
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Metrics/ModuleLength
