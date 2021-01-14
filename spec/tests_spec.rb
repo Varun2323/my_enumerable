@@ -5,6 +5,8 @@ describe Enumerable do
     let(:arr_s) {['hello','hi','bye']}
     let(:ha) { { 'key1' => 'green', 'key2' => 'purple', 'key3' => 'black' } }
     let(:ran) { (0..10) }
+    let(:my_array2) { [] }
+    let(:test) { [true, false, nil] }
 
 context 'Enumerable method that works like the original' do
 
@@ -96,5 +98,67 @@ context 'Enumerable method that works like the original' do
 
     end
 
+    describe 'my_all:' do
+      it 'should return an Enumerator if block is not given' do
+        expect(arr.my_all?).to eql(true)
+      end
+      it 'should return an array given the condition' do
+        expect(arr.my_all? { |elem| elem > 1 }).to eql(false)
+      end
+    end
+
+
+
+    describe 'my_any:' do
+      it 'returns true if not given and atleast has one element not false or nil' do
+        expect(my_array2.my_any?).to eql(false)
+      end
+      it 'returns false based on the condition in the block' do
+        expect(arr.my_any? { |elem| elem > 10 }).to eql(false)
+      end
+      it 'returns true if the block returns a value other than false or nil' do
+        expect(arr.my_any? { |elem| elem < 10 }).to eql(true)
+      end
+    end
+
+    describe 'my_none:' do
+      it 'returns true if the block is not given, and none of the collection members is true' do
+        expect(test.my_none?).to eql(false)
+      end
+  
+    it 'returns true if the block never returns true' do
+      expect(arr.my_none? { |elem| elem > 10 }).to eql(true)
+    end
+  end
+
+  describe 'my_count:' do
+    it 'returns number of elements in a list if a block is not given' do
+      expect(arr.my_count).to eql(4)
+    end
+
+    it 'if passed argument, returns number of elements equal to argument' do
+      expect(arr.my_count(4)).to eql(1)
+    end
+  end
+
+  describe 'my_map:' do
+    it 'returns and enumerator if no block is given ' do
+      expect(arr.my_map).to be_an(Enumerator)
+    end
+
+    it 'if block is given returns an array based on the block' do
+      expect(arr.my_map { |elem| elem * 3 }).to eql([3, 6, 9, 12])
+    end
+  end
+
+  describe 'my_inject:' do
+    it 'if a symbol is given, returns a value based on the symbol' do
+      expect(ran.my_inject(:+)).to eql(55)
+    end
+
+    it 'if a block is given returns a value based on the block' do
+      expect(ran.my_inject { |sum, num| sum + num }).to eql(55)
+    end
+  end
 end 
 end
