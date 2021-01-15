@@ -35,6 +35,12 @@ GitHub: [@Varun2323](https://github.com/Varun2323)
 
 LinkedIn: [Varun Sharma](https://www.linkedin.com/in/varun-sharma-82b29b82/)
 
+👤 Carlos Ospina
+
+GitHub: [@Carloso0114](https://github.com/carloso0114)
+
+LinkedIn: [Varun Sharma](https://www.linkedin.com/in/carlos-ospina-242b831a6/)
+
 
 ##  Contributing
 
